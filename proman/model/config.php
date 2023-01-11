@@ -1,11 +1,17 @@
 <?php
+/**
+  * Configuration for database connection
+  *
+  */
 
-$host = "mariadb.vamk.fi";
+  $host = "mariadb.vamk.fi";
 $username = "e2101778";
 $password = "YSxhqFdmZAA";
 $dbname = "e2101778_proman";
-$options =array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-);
+  $options    = array(
+                  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                );
 
 ?>
+  
+                

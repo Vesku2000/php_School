@@ -2,26 +2,54 @@
 require_once "../model/model.php";
 require "common.php";
 
+$id = '';
+$task_title = '';
+$date = '';
+$time = '';
+$project_id = '';
 
+if (isset($_GET['id'])) {
+    list($id, $task_title, $date, $time, $project_id) = get_task($_GET['id']);
+}
 
-if(isset($_POST['submit'])){
-    $title = escape(trim($_POST['title']));
-    $category = escape($_POST['category']);
-    $id = escape($_POST['id']);
+$projects = get_all_projects();
 
-    if(empty($title) || empty($category)) {
-        $error_message = "Title or category empty";
-    }else{
-        if(titleExists("tasks", $title)){
-            $error_message = "I'm sorry, but looks like \"" . $title . "\" already exists";
-        }else{
-            add_task($title, $category, $id);
-            header('Refresh:4; url=task_list.php');
-            $confirm_message = 'Task added succesfully! Moving to task list..';
+if (isset($_POST['submit'])) {
+    $id = null;
+
+    if (isset($_POST['id'])) {
+        $id = $_POST['id'];
+    }
+
+    $id = trim($_POST['id']);
+    $project_id = trim($_POST['project_id']);
+    $title = trim($_POST['title']);
+    $date = trim($_POST['date']);
+    $time = trim($_POST['time']);
+
+    //echo "task_id: $id, project_id: $project_id";
+
+    if (empty($id) || empty($title) || empty($date) || empty($time)) {
+        $error_message = "One or more fields empty";
+    } else {
+
+        if (titleExists("tasks", $title) && $id == null) {
+            $error_message = "I'm sorry, but looks like " . escape($title) . " already exists";
+        } else {
+            if (add_task($id, $title, $date, $time, $project_id)) {
+                 header('Refresh:4; url=task_list.php');
+                 if (!empty($id)) {
+                    $confirm_message = escape($title) . ' updated successfully';
+                 } else {
+                    $confirm_message = escape($title) . ' added successfully';
+                 }   
+            } else {
+             $error_message = "There's something wrong'";
+            }
+            //add_task($id, $title, $date, $time);
+            //$confirm_message = escape($title) . ' added successfully';
         }
     }
 }
 
-require "../views/task.php"
-
-?>
+require "../views/task.php";

@@ -1,7 +1,8 @@
 <?php
 /*
-warning this installer script will overwrite the database
+WARNING: This installer script will overwrite the database!
 */
+
 require "../model/config.php";
 
 try {
@@ -10,13 +11,10 @@ try {
     $sql_structure = file_get_contents("structure.sql");
     $sql_content = file_get_contents("content.sql");
 
-    $connection->exec(sql_structure);
-    $connection->exec(sql_content);
+    $connection->exec($sql_structure);
+    $connection->exec($sql_content);
 
-    echo "<p>Database created and populated succesfully. <br><a href='../'Home</a></p>";
-
-} catch (PDOException $error){
+    echo "<p>Database created and populated successfully. <br><a href='../'>Home</a></p>";
+} catch (PDOException $error) {
     echo "<br>SQL ERROR:" . $error->getMessage();
 }
-
-?>
