@@ -212,3 +212,19 @@ function titleExists($table, $title)
         exit;
     }
 }
+
+function createCsv($table){
+    try {
+        global $connection;
+
+        $sql =  'SELECT * FROM tasks WHERE id = ?';
+        $project = $connection->prepare($sql);
+        $project->bindValue(1, $id, PDO::PARAM_INT);
+        $project->execute();
+
+        return $project->fetch();
+    } catch (PDOException $exception) {
+        echo $sql . "<br>" . $exception->getMessage();
+        exit;
+    }
+}
