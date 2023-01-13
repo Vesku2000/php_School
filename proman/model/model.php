@@ -213,19 +213,17 @@ function titleExists($table, $title)
     }
 }
 //create csv
-function createCsv($table){
+function get_project_columns()
+{
     try {
         global $connection;
+        $sql = "SELECT `COLUMN_NAME` as Col FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='e2101778_proman' AND `TABLE_NAME`='projects';";
+        $projects = $connection->query($sql);
 
-        $sql =  'SELECT * FROM tasks WHERE id = ?';
-        $project = $connection->prepare($sql);
-        $project->bindValue(1, $id, PDO::PARAM_INT);
-        $project->execute();
+        return $projects;
 
-    
-        return $project->fetch();
-    } catch (PDOException $exception) {
-        echo $sql . "<br>" . $exception->getMessage();
+    } catch (PDOExpection $err) {
+        echo $sql . "<br>" . $err->getMessage();
         exit;
     }
 }
