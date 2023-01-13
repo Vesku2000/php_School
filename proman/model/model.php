@@ -212,7 +212,7 @@ function titleExists($table, $title)
         exit;
     }
 }
-//create csv
+//create csv projects
 function get_project_columns()
 {
     try {
@@ -221,6 +221,20 @@ function get_project_columns()
         $projects = $connection->query($sql);
 
         return $projects;
+
+    } catch (PDOExpection $err) {
+        echo $sql . "<br>" . $err->getMessage();
+        exit;
+    }
+}//create csv tasks
+function get_project_tasks()
+{
+    try {
+        global $connection;
+        $sql = "SELECT `COLUMN_NAME` as Colu FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='e2101778_proman' AND `TABLE_NAME`='tasks';";
+        $projects = $connection->query($sql);
+
+        return $task;
 
     } catch (PDOExpection $err) {
         echo $sql . "<br>" . $err->getMessage();

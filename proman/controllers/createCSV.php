@@ -2,14 +2,22 @@
 require_once("../model/model.php");
 require("common.php");
 
-// $filename = '../data/exports/projects.csv' . date('Ymd') . ".csv";
 $data = "";
+
 $filename = '../data/csv/project_csv/projects_'. date("Y-m-d h:i:s") . '.csv';
+
 $projects = get_all_projects();
 $columns = get_project_columns();
+$tasks = get_all_tasks();
+$taskColumns = get_project_tasks()
 
 foreach($columns as $column) {
     $data .= $column['Col'] . ";";
+
+}
+
+foreach($columns as $column) {
+    $data .= $column['Colu'] . ";";
 
 }
 
