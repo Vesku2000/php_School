@@ -219,6 +219,7 @@ function get_project_columns()
         global $connection;
         $sql = "SELECT `COLUMN_NAME` as Col FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='e2101778_proman' AND `TABLE_NAME`='projects';";
         $projects = $connection->query($sql);
+        
 
         return $projects;
 
@@ -226,7 +227,9 @@ function get_project_columns()
         echo $sql . "<br>" . $err->getMessage();
         exit;
     }
-}//create csv tasks
+}
+//create csv tasks
+//not working
 function get_project_tasks()
 {
     try {
