@@ -212,7 +212,7 @@ function titleExists($table, $title)
         exit;
     }
 }
-
+//create csv
 function createCsv($table){
     try {
         global $connection;
@@ -222,6 +222,7 @@ function createCsv($table){
         $project->bindValue(1, $id, PDO::PARAM_INT);
         $project->execute();
 
+    
         return $project->fetch();
     } catch (PDOException $exception) {
         echo $sql . "<br>" . $exception->getMessage();
