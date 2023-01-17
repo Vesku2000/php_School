@@ -230,14 +230,14 @@ function get_project_columns()
 }
 //create csv tasks
 //not working
-function get_project_tasks()
+function get_task_columns()
 {
     try {
         global $connection;
         $sql = "SELECT `COLUMN_NAME` as Colu FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='e2101778_proman' AND `TABLE_NAME`='tasks';";
-        $projects = $connection->query($sql);
+        $tasks = $connection->query($sql);
 
-        return $task;
+        return $tasks;
 
     } catch (PDOExpection $err) {
         echo $sql . "<br>" . $err->getMessage();
