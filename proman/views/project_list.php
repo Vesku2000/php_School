@@ -28,6 +28,9 @@ require 'nav.php';
         </li>
         <?php endforeach; ?>
     </ul>
+    
+    <li><a class="csv" href="/~e2101778/php/proman/controllers/createCSV.php">create CSV</a></li>
+    
 </div>
 
 
