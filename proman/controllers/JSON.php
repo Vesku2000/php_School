@@ -1,6 +1,6 @@
 <?php
 require_once("../model/model.php");
-require("common.php");
+//require("common.php");
 
 $projects = get_all_projects();
 $tasks = get_all_tasks();
@@ -17,7 +17,15 @@ foreach($tasks as $task) {
     array_push($taskArr, $task['id'] . $task['title'] . $task['date_task'] );
 }
 
+$projectJson = json_encode($projectArr);
+$taskJson = json_encode($taskArr);
 
 
-require "../views/project_list.php";
+
+
+require "../views/Arrays.php";
+
+echo $projectJson;
+echo $taskJson;
+
 ?>
