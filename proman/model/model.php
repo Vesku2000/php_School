@@ -234,7 +234,7 @@ function get_task_columns()
 {
     try {
         global $connection;
-        $sql = "SELECT `COLUMN_NAME` as Colu FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='e2101778_proman' AND `TABLE_NAME`='tasks';";
+        $sql = "SELECT `COLUMN_NAME` as Col FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='e2101778_proman' AND `TABLE_NAME`='tasks';";
         $tasks = $connection->query($sql);
 
         return $tasks;

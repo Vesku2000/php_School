@@ -6,6 +6,7 @@
         <li><a href="/~e2101778/php/proman/controllers/project.php">Add project</a></li>
         <li><a href="/~e2101778/php/proman/controllers/task.php">Add task</a></li>
         <li><a href="/~e2101778/php/proman/controllers/createCSV.php">create CSV</a></li>
+        <li><a href="/~e2101778/php/proman/controllers/taskCSV.php">Task CSV</a></li>
     </ul>
 </nav>
 

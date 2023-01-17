@@ -6,7 +6,7 @@ $data = "";
 
 $filename = '../data/csv/project_csv/projects_'. date("Y-m-d h:i:s") . '.csv';
 
-$projects = get_all_projects();
+$tasks = get_all_tasks();
 $columns = get_task_columns();
 
 
@@ -17,8 +17,8 @@ foreach($columns as $column) {
 $data .= "\r";
 
 
-foreach($projects as $project) {
-     $data .= $project['id'] . ";" . $project['title'] . ";" . $project['category'] . ";" . "\r";
+foreach($tasks as $task) {
+     $data .= $task['id'] . ";" . $task['title'] . ";" . $task['date_task'] . ";" . $task['time_task'] . $task['project_id'] ."\r";
 
 }
 
