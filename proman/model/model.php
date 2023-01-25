@@ -272,6 +272,7 @@ function get_all_tasks_dates()
         */
 
         $tasks = $connection->query($sql);
+        
 
         return $tasks;
     } catch (PDOException $exception) {
@@ -292,4 +293,19 @@ function get_all_tasks_dates()
             echo "Error: Mail was not sent!";
         }
 
+}
+
+function sendMail(){
+    $to = "valtterisyrjanen@gmail.com";
+$subject = "virus";
+$txt = "Jos saat tämän viestin \r
+        olet velkaa minulle";
+
+$headers = "From: virus@suomi.fi";
+
+if(sendEmail($to, $subject, $txt, $headers)){
+    echo "Mail sent";
+}else{
+    echo "Error: Mail was not sent!";
+}
 }
