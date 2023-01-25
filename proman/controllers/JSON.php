@@ -21,7 +21,8 @@ $projectJson = json_encode($projectArr);
 $taskJson = json_encode($taskArr);
 
 
-
+$projectJson = json_encode($projectArr, JSON_PRETTY_PRINT);
+$taskJson = json_encode($taskArr, JSON_PRETTY_PRINT);
 
 require "../views/Arrays.php";
 

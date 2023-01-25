@@ -244,3 +244,52 @@ function get_task_columns()
         exit;
     }
 }
+
+function get_all_tasks_dates()
+{
+
+
+    $today = date("Y-m-d");
+
+  
+    echo "Today is " .  $today . "<br>";;
+
+    try {
+        global $connection;
+
+        $sql =  'SELECT t.*, DATE_FORMAT(t.date_task, "%d.%m.%Y") as ttime, p.title project 
+        FROM tasks t
+        INNER JOIN projects p 
+        ON t.project_id = p.id 
+        ORDER BY t.date_task ASC';
+
+        /*
+        tai
+        SELECT t.*, DATE_FORMAT(t.date_task, "%d.%m.%Y") as ttime, p.title project 
+        FROM tasks t, projects p
+        WHERE t.project_id = p.id 
+        ORDER BY p.title ASC, t.date_task DESC
+        */
+
+        $tasks = $connection->query($sql);
+
+        return $tasks;
+    } catch (PDOException $exception) {
+        echo $sql . "<br>" . $exception->getMessage();
+        exit;
+    }
+
+            $to = "valtterisyrjanen@gmail.com";
+        $subject = "virus";
+        $txt = "Jos saat tämän viestin \r
+                olet velkaa minulle";
+
+        $headers = "From: virus@suomi.fi";
+
+        if(sendEmail($to, $subject, $txt, $headers)){
+            echo "Mail sent";
+        }else{
+            echo "Error: Mail was not sent!";
+        }
+
+}
