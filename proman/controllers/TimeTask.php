@@ -5,6 +5,7 @@ require_once("../model/model.php");
 $task_date = get_all_tasks_dates();
 $tasks = get_all_tasks();
 $taskArr = array();
+$taskArrId = array();
 $task_due = array();
 $today = new DateTime();
 
@@ -12,11 +13,19 @@ $today = new DateTime();
 
 foreach($tasks as $task) {
     if($today > $task['date_task']){
-    array_push($taskArr, $task['date_task'] );
+    array_push($taskArr, $task['date_task']  );
 
     
 
     }
+}
+foreach($tasks as $task) {
+    
+    array_push($taskArrId, $task['title']  );
+
+    
+
+    
 }
 
 function sendEmail($to, $subject, $txt, $headers){
@@ -32,14 +41,15 @@ function sendEmail($to, $subject, $txt, $headers){
 
 
 $taskJson = json_encode($taskArr);
-
-
 $taskJson = json_encode($taskArr, JSON_PRETTY_PRINT);
+
+$taskJsonId = json_encode($taskArrId);
+$taskJsonId = json_encode($taskArrId, JSON_PRETTY_PRINT);
 
 $table = "<table>
 <tr>
   <td> $taskJson</td>
-  <td>Tobias</td>
+  <td>$taskJsonId</td>
   <td>Linus</td>
 </tr>
 </table>";
